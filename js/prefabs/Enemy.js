@@ -1,6 +1,6 @@
-var SpaceHipster = SpaceHipster || {};
+var SpaceShooter = SpaceShooter || {};
 
-SpaceHipster.Enemy = function(game, x, y, key, health, enemyBullets) {
+SpaceShooter.Enemy = function(game, x, y, key, health, enemyBullets) {
   Phaser.Sprite.call(this, game, x, y, key);
 
   this.game = game;
@@ -18,10 +18,10 @@ SpaceHipster.Enemy = function(game, x, y, key, health, enemyBullets) {
   this.scheduleShooting();
 };
 
-SpaceHipster.Enemy.prototype = Object.create(Phaser.Sprite.prototype);
-SpaceHipster.Enemy.prototype.constructor = SpaceHipster.Enemy;
+SpaceShooter.Enemy.prototype = Object.create(Phaser.Sprite.prototype);
+SpaceShooter.Enemy.prototype.constructor = SpaceShooter.Enemy;
 
-SpaceHipster.Enemy.prototype.update = function() {
+SpaceShooter.Enemy.prototype.update = function() {
   //bounce on the borders
   if (this.position.x < 0.05 * this.game.world.width) {
     this.position.x = 0.05 * this.game.world.width + 2;
@@ -38,7 +38,7 @@ SpaceHipster.Enemy.prototype.update = function() {
 };
 
 
-SpaceHipster.Enemy.prototype.damage = function(amount) {
+SpaceShooter.Enemy.prototype.damage = function(amount) {
   Phaser.Sprite.prototype.damage.call(this, amount);
 
   this.play('getHit');
@@ -57,7 +57,7 @@ SpaceHipster.Enemy.prototype.damage = function(amount) {
   }
 };
 
-SpaceHipster.Enemy.prototype.reset = function(x, y, health, key, scale, speedX, speedY){
+SpaceShooter.Enemy.prototype.reset = function(x, y, health, key, scale, speedX, speedY){
   Phaser.Sprite.prototype.reset.call(this, x, y, health);
 
   this.loadTexture(key);
@@ -68,17 +68,17 @@ SpaceHipster.Enemy.prototype.reset = function(x, y, health, key, scale, speedX, 
   this.enemyTimer.resume();
 }
 
-SpaceHipster.Enemy.prototype.scheduleShooting = function() {
+SpaceShooter.Enemy.prototype.scheduleShooting = function() {
   this.shoot();
 
   this.enemyTimer.add(Phaser.Timer.SECOND * 2, this.scheduleShooting, this);
 };
 
-SpaceHipster.Enemy.prototype.shoot = function() {
+SpaceShooter.Enemy.prototype.shoot = function() {
   var bullet = this.enemyBullets.getFirstExists(false);
 
   if (!bullet) {
-    bullet = new SpaceHipster.EnemyBullet(this.game, this.x, this.bottom);
+    bullet = new SpaceShooter.EnemyBullet(this.game, this.x, this.bottom);
     this.enemyBullets.add(bullet);
   }
   else {

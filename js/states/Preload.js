@@ -1,6 +1,6 @@
-// var SpaceHipster = SpaceHipster || {};
+// var SpaceShooter = SpaceShooter || {};
 //
-// SpaceHipster.GameOver = {
+// SpaceShooter.GameOver = {
 //
 //   init: function(score) {
 //     finalScore = score;

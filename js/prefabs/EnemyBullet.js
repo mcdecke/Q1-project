@@ -1,6 +1,6 @@
-var SpaceHipster = SpaceHipster || {};
+var SpaceShooter = SpaceShooter || {};
 
-SpaceHipster.EnemyBullet = function(game, x, y) {
+SpaceShooter.EnemyBullet = function(game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'bullet');
 
   //some default values
@@ -9,5 +9,5 @@ SpaceHipster.EnemyBullet = function(game, x, y) {
   this.outOfBoundsKill = true;
 };
 
-SpaceHipster.EnemyBullet.prototype = Object.create(Phaser.Sprite.prototype);
-SpaceHipster.EnemyBullet.prototype.constructor = SpaceHipster.EnemyBullet;
+SpaceShooter.EnemyBullet.prototype = Object.create(Phaser.Sprite.prototype);
+SpaceShooter.EnemyBullet.prototype.constructor = SpaceShooter.EnemyBullet;

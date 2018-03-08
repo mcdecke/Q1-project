@@ -1,6 +1,6 @@
-var SpaceHipster = SpaceHipster || {};
+var SpaceShooter = SpaceShooter || {};
 
-SpaceHipster.GameState = {
+SpaceShooter.GameState = {
 
   // initiate game settings
   init: function(currentLevel) {
@@ -171,7 +171,7 @@ SpaceHipster.GameState = {
         //starts game
 
         this.game.paused = false;
-        SpaceHipster.game.state.start('GameState', true, true, this.currentLevel = 1);
+        SpaceShooter.game.state.start('GameState', true, true, this.currentLevel = 1);
       }, this)
     }
   },
@@ -185,7 +185,7 @@ SpaceHipster.GameState = {
     var bullet = this.playerBullets.getFirstExists(false);
 
     if (!bullet) {
-      bullet = new SpaceHipster.PlayerBullet(this.game, this.player.x + 20, this.player.top);
+      bullet = new SpaceShooter.PlayerBullet(this.game, this.player.x + 20, this.player.top);
       this.playerBullets.add(bullet)
     } else {
       //reset pos
@@ -226,7 +226,7 @@ SpaceHipster.GameState = {
   createEnemy: function(x, y, health, key, scale, speedX, speedY) {
     var enemy = this.enemies.getFirstExists(false);
     if (!enemy) {
-      enemy = new SpaceHipster.Enemy(this.game, x, y, key, health, this.enemyBullets);
+      enemy = new SpaceShooter.Enemy(this.game, x, y, key, health, this.enemyBullets);
       this.enemies.add(enemy);
     }
     enemy.reset(x, y, health, key, scale, speedX, speedY);
@@ -280,7 +280,7 @@ SpaceHipster.GameState = {
 
 
 
-// SpaceHipster.GameState = (function() {
+// SpaceShooter.GameState = (function() {
 
 //   function init(currentLevel) {
 //     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -362,7 +362,7 @@ SpaceHipster.GameState = {
 //     var bullet = this.playerBullets.getFirstExists(false);
 //
 //     if (!bullet) {
-//       bullet = new SpaceHipster.PlayerBullet(this.game, this.player.x + 20, this.player.top);
+//       bullet = new SpaceShooter.PlayerBullet(this.game, this.player.x + 20, this.player.top);
 //       this.playerBullets.add(bullet)
 //     } else {
 //       //reset pos
@@ -397,7 +397,7 @@ SpaceHipster.GameState = {
 //   function createEnemy(x, y, health, key, scale, speedX, speedY) {
 //     var enemy = this.enemies.getFirstExists(false);
 //     if (!enemy) {
-//       enemy = new SpaceHipster.Enemy(this.game, x, y, key, health, this.enemyBullets);
+//       enemy = new SpaceShooter.Enemy(this.game, x, y, key, health, this.enemyBullets);
 //       this.enemies.add(enemy);
 //     }
 //     enemy.reset(x, y, health, key, scale, speedX, speedY);
