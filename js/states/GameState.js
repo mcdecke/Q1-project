@@ -1,6 +1,6 @@
-var SpaceShooter = SpaceShooter || {};
+var SpaceHipster = SpaceHipster || {};
 
-SpaceShooter.GameState = {
+SpaceHipster.GameState = {
 
   // initiate game settings
   init: function(currentLevel) {
@@ -124,11 +124,19 @@ SpaceShooter.GameState = {
     this.game.physics.arcade.overlap(this.enemyBullets, this.player, this.killPlayer, null, this);
     //velocity is zero is nothing is pressed
     this.player.body.velocity.x = 0;
+    this.player.body.velocity.y = 0;
     //moves left or right depending on where the screen is touched
     if (this.game.input.activePointer.isDown) {
-      var targetX = this.game.input.activePointer.position.x;
-      var direction = targetX >= this.game.world.centerX ? 1 : -1;
-      this.player.body.velocity.x = direction * this.PLAYER_SPEED;
+      // var targetX = this.game.input.activePointer.position.x;
+      // var direction = targetX >= this.game.world.centerX ? 1 : -1;
+      // this.player.body.velocity.x = direction * this.PLAYER_SPEED;
+      this.game.physics.arcade.moveToPointer(this.player, 400);
+
+        //  if it's overlapping the mouse, don't move any more
+        if (Phaser.Rectangle.contains(this.player.body, this.game.input.x, this.game.input.y))
+        {
+            this.player.body.velocity.setTo(0, 0);
+        }
     }
 
     //update score_label
@@ -171,7 +179,7 @@ SpaceShooter.GameState = {
         //starts game
 
         this.game.paused = false;
-        SpaceShooter.game.state.start('GameState', true, true, this.currentLevel = 1);
+        SpaceHipster.game.state.start('GameState', true, true, this.currentLevel = 1);
       }, this)
     }
   },
@@ -185,7 +193,7 @@ SpaceShooter.GameState = {
     var bullet = this.playerBullets.getFirstExists(false);
 
     if (!bullet) {
-      bullet = new SpaceShooter.PlayerBullet(this.game, this.player.x + 20, this.player.top);
+      bullet = new SpaceHipster.PlayerBullet(this.game, this.player.x + 20, this.player.top);
       this.playerBullets.add(bullet)
     } else {
       //reset pos
@@ -226,7 +234,7 @@ SpaceShooter.GameState = {
   createEnemy: function(x, y, health, key, scale, speedX, speedY) {
     var enemy = this.enemies.getFirstExists(false);
     if (!enemy) {
-      enemy = new SpaceShooter.Enemy(this.game, x, y, key, health, this.enemyBullets);
+      enemy = new SpaceHipster.Enemy(this.game, x, y, key, health, this.enemyBullets);
       this.enemies.add(enemy);
     }
     enemy.reset(x, y, health, key, scale, speedX, speedY);
@@ -280,7 +288,7 @@ SpaceShooter.GameState = {
 
 
 
-// SpaceShooter.GameState = (function() {
+// SpaceHipster.GameState = (function() {
 
 //   function init(currentLevel) {
 //     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -362,7 +370,7 @@ SpaceShooter.GameState = {
 //     var bullet = this.playerBullets.getFirstExists(false);
 //
 //     if (!bullet) {
-//       bullet = new SpaceShooter.PlayerBullet(this.game, this.player.x + 20, this.player.top);
+//       bullet = new SpaceHipster.PlayerBullet(this.game, this.player.x + 20, this.player.top);
 //       this.playerBullets.add(bullet)
 //     } else {
 //       //reset pos
@@ -397,7 +405,7 @@ SpaceShooter.GameState = {
 //   function createEnemy(x, y, health, key, scale, speedX, speedY) {
 //     var enemy = this.enemies.getFirstExists(false);
 //     if (!enemy) {
-//       enemy = new SpaceShooter.Enemy(this.game, x, y, key, health, this.enemyBullets);
+//       enemy = new SpaceHipster.Enemy(this.game, x, y, key, health, this.enemyBullets);
 //       this.enemies.add(enemy);
 //     }
 //     enemy.reset(x, y, health, key, scale, speedX, speedY);
