@@ -11,10 +11,12 @@ describe('SpaceShooter', function () {
     expect(SpaceShooter).to.not.be.undefined
   })
   it('expects localStorage to exist.', function(){
-    expect('localStorage').to.not.be.undefined
+
+    expect('localStorage[0]').to.not.be.undefined
   })
   it('expects currentLevel to be greater than zero.', function(){
-    expect('currentLevel').to.be.above(0)
+    let currentLevel = 1;
+    expect(currentLevel).to.be.above(0)
   })
   it('bools will be bools', function(){
     expect(true).to.eql(true)
